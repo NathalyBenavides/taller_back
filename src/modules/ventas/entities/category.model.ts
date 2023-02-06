@@ -3,7 +3,6 @@ import { ProductEntity } from "./product.model";
 
 @Entity('category',{schema:'ventasbdd'})
 export class CategoryEntity{
-    //columnas de la entidad 
     @PrimaryGeneratedColumn('identity')
     id:string;
     @CreateDateColumn({
@@ -27,10 +26,7 @@ export class CategoryEntity{
         nullable:true,
     })
 
-    deleteAt:Date; //el nombre del atributo
-
-
-    //Relationships
+    deleteAt:Date; 
     
     @OneToMany(() => ProductEntity, (product) => product.category)
     @JoinColumn({name:'product_id'})
@@ -42,7 +38,6 @@ export class CategoryEntity{
     })
     
     name:string;
-    //nombre del atributo
     
     @Column('varchar',{
         name:'description',
@@ -50,5 +45,5 @@ export class CategoryEntity{
     })
     
     description:string;
-    //user es categoria y photo es producto
+
 }

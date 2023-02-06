@@ -13,7 +13,7 @@ import {
     Query,
   } from '@nestjs/common';
   import { ApiOperation, ApiTags } from '@nestjs/swagger';
-  //import { Auth } from '@auth/decorators';
+  import { Auth } from '@auth/decorators';
   import { CreateProductDto, FilterProductDto, UpdateProductDto } from '@uic/dto';
   import { ProductEntity } from '@uic/entities';
   import { ResponseHttpModel } from '@shared/models';

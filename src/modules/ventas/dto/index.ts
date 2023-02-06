@@ -13,4 +13,10 @@ export * from './categories/filter-category.dto';
 export * from './categories/read-category.dto';
 export * from './categories/update-category.dto';
 
+//Students
+export * from './students/create-student.dto';
+export * from './students/update-student.dto';
 
+//Careers
+export * from './careers/create-career.dto';
+export * from './careers/update-career.dto';

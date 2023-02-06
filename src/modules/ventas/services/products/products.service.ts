@@ -1,7 +1,6 @@
 import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { RepositoryEnum } from 'src/shared/enums/repository.enum';
 import { FindOptionsWhere, ILike, Repository } from 'typeorm';
-//import { ServiceResponseHttpModel } from '@shared/models';
 import { plainToInstance } from 'class-transformer';
 import { response } from 'express';
 import { CreateProductDto, ReadProductDto, FilterProductDto, UpdateProductDto } from '../../dto';
@@ -16,9 +15,9 @@ export class ProductsService {
     private repository: Repository<ProductEntity>,
   ) {}
   async create(payload: CreateProductDto): Promise<ServiceResponseHttpModel> {
-    const newProduct = this.repository.create(payload); //se crea el producto
-    const productCreated = this.repository.save(newProduct); //guardar el producto nuevo creado
-    return { data: plainToInstance(ReadProductDto, productCreated) }; //visualizamos
+    const newProduct = this.repository.create(payload); 
+    const productCreated = this.repository.save(newProduct); 
+    return { data: plainToInstance(ReadProductDto, productCreated) }; 
   }
 
   async catalogue(): Promise<ServiceResponseHttpModel> {
@@ -29,7 +28,6 @@ export class ProductsService {
     };
   }
 
-  //*Es asicrono cuando de vuelve una promesa
   async findAll(params?: FilterProductDto): Promise<ServiceResponseHttpModel> {
     if (params?.limit > 0 && params?.page >= 0)
       return await this.paginateAndFilter(params);
@@ -77,7 +75,7 @@ async remove(id: string): Promise<ServiceResponseHttpModel> {
 
     return { data: plainToInstance(ReadProductDto, productDelete) };
 }
-//cuidado con este metodo este is es necesario 
+
 async removeAll(payload: ProductEntity[]): Promise<ServiceResponseHttpModel> {
     const productsDeleted = await this.repository.softRemove(payload);
     return { data: productsDeleted };
@@ -129,17 +127,4 @@ async activateproduct(payload: CreateProductDto): Promise<ServiceResponseHttpMod
 
     return { data: plainToInstance(ReadProductDto, productDelete) };
 }
-
-/*setEmail(){
-if(!this.email){
-   return;
-}
-this.email = this.email.toLowerCase().trim();
-
-async hashPassword(){
-    if(!this.password){
-        return;
-    }
-    this.password = await Bcrypt.hash(this.password, 12);
-}*/
 }

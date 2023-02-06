@@ -4,18 +4,15 @@ import { CategoryEntity } from "./category.model";
 @Entity('products',{schema:'ventasbdd'})
 
 export class ProductEntity{
-    //columnas de la entidad 
     @PrimaryGeneratedColumn('identity')
     id:string;
     @CreateDateColumn({
-        //objeto
         name:'create_at',
         type:'timestamptz',
         default:() => 'CURRENT_TIMESTAMP',
     })
     
-    createAT:Date;//atributo
-
+    createAT:Date;
     @UpdateDateColumn({
         name:'create_at',
         type:'timestamptz',
@@ -29,9 +26,7 @@ export class ProductEntity{
         nullable:true,
     })
 
-    deleteAt:Date; //el nombre del atributo
-    //Relationships
-    //paramtrro de entrada =>
+    deleteAt:Date; 
     @ManyToOne(() => CategoryEntity, (category) => category.product)
     @JoinColumn({name:'product_id'})
     category: CategoryEntity;
@@ -44,11 +39,11 @@ export class ProductEntity{
     title:string;
 
     @Column('number',{
-        name:'price',//nombre de la tabla
+        name:'price',
         comment:'precio del  producto',
     })
     
-    price:number;//nombre del atributo
+    price:number;
     
     @Column('varchar',{
         name:'description',
@@ -56,27 +51,6 @@ export class ProductEntity{
     })
     description:string;
 
-//antes de insertar y antes de actualizar
-
- /*    @BeforeInsert()
-    @BeforeUpdate()
-    setEmail(){
-        if(!this.code){
-            return;
-        }
-        this.code = this.code.toLowerCase().trim();
-    }
-    async hashPassword(){
-       if(!this.password){
-        return;
-       }
-       this.password = await Bcrypt.hash(this.hashPassword, 10);
-    } */
-
 }
 
 
-
-
-
-//user es categoria y photo es producto

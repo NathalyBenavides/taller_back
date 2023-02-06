@@ -4,7 +4,6 @@ import { BaseProductDto } from './base-product.dto';
 
 @Exclude()
 export class ReadProductDto extends BaseProductDto {
-  //exponer el valor del atributo
   @Expose()
   readonly title;
 
